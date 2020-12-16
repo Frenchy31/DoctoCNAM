@@ -19,7 +19,7 @@ class MeetingSeeder extends Seeder
     public function run()
     {
         Meetings::factory()
-            ->has(User::factory()->count(2))
-            ->times(100000);
+            ->times(50000)
+            ->create();
     }
 }

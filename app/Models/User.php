@@ -65,6 +65,6 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     public function meetings()
     {
-        return $this->belongsToMany(Meetings::class,'meeting_id');
+        return $this->belongsToMany(Meetings::class,'pivot_users_meetings', 'user_id', 'meeting_id');
     }
 }

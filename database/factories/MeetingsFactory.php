@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Meetings;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class MeetingsFactory extends Factory
@@ -22,8 +23,21 @@ class MeetingsFactory extends Factory
     public function definition()
     {
         return [
+            'address_id' => rand(1,50000),
             'datetime' => $this->faker->dateTimeBetween('now', '+6 months'),
             'symptome' => $this->faker->text(300)
         ];
     }
+
+    public function configure()
+    {
+        return $this->afterMaking(function (Meetings $meeting){
+             //...
+        })->afterCreating(function (Meetings $meeting){
+             $meeting->users()->attach(User::where('role_id', 1)->get()->random()->id);
+             $meeting->users()->attach(User::where('role_id', rand(2,8))->get()->random()->id);
+             $meeting->save();
+        });
+    }
+
 }

@@ -44,6 +44,6 @@ class Meetings extends Model
      */
     public function users()
     {
-        return $this->belongsToMany( User::class, 'user_id');
+        return $this->belongsToMany( User::class, 'pivot_users_meetings', 'meeting_id', 'user_id');
     }
 }
