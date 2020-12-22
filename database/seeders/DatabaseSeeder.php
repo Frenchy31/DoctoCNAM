@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Adresses;
 use App\Models\User;
-use App\Models\Meetings;
+use App\Models\Meeting;
 use Illuminate\Database\Seeder;
 use function PHPUnit\Framework\never;
 

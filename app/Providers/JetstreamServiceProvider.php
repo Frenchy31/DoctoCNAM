@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 use App\Actions\Jetstream\DeleteUser;
-use App\Models\Roles;
+use App\Models\Role;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Fortify\Fortify;
 use Laravel\Jetstream\Jetstream;
@@ -49,7 +49,7 @@ class JetstreamServiceProvider extends ServiceProvider
         ]);
 
         Fortify::registerView(function () {
-            return view('auth.register', ['roles' => Roles::all()]);
+            return view('auth.register', ['roles' => Role::all()]);
         });
     }
 }

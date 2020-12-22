@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Notifications\VerifyEmail;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
@@ -28,6 +29,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'email',
         'password',
         'phone_number',
+        'role_id'
     ];
 
     /**
@@ -60,11 +62,16 @@ class User extends Authenticatable implements MustVerifyEmail
         'profile_photo_url',
     ];
 
+    public function role()
+    {
+        return $this->hasOne(Role::class, 'id', 'role_id');
+    }
+
     /**
      * Meetings related
      */
     public function meetings()
     {
-        return $this->belongsToMany(Meetings::class,'pivot_users_meetings', 'user_id', 'meeting_id');
+        return $this->belongsToMany(Meeting::class,'pivot_users_meetings', 'user_id', 'meeting_id');
     }
 }

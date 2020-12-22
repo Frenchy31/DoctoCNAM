@@ -1,0 +1,7 @@
+/vendor
+.env
+.env.bak.vessel
+vessel
+.idea
+node_modules
+package-lock.json

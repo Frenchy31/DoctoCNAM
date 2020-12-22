@@ -15,7 +15,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
  * @property string $updated_at
  * @property Adresses $adresse
  */
-class Meetings extends Model
+class Meeting extends Model
 {
     use HasFactory;
     /**

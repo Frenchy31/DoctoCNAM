@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Meetings;
+use App\Models\Meeting;
 use App\Models\User;
 use Database\Factories\MeetingsFactory;
 use Faker\Factory;
@@ -18,7 +18,7 @@ class MeetingSeeder extends Seeder
      */
     public function run()
     {
-        Meetings::factory()
+        Meeting::factory()
             ->times(50000)
             ->create();
     }

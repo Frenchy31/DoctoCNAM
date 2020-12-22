@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $city
  * @property string $created_at
  * @property string $updated_at
- * @property Meetings[] $meetings
+ * @property Meeting[] $meetings
  * @property User[] $users
  */
 class Adresses extends Model

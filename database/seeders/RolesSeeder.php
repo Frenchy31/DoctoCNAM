@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Roles;
+use App\Models\Role;
 use Illuminate\Database\Seeder;
 
 class RolesSeeder extends Seeder
@@ -14,13 +14,13 @@ class RolesSeeder extends Seeder
      */
     public function run()
     {
-        Roles::create(['name' => 'Patient']);
-        Roles::create(['name' => 'Médecin généraliste']);
-        Roles::create(['name' => 'Dermatologue']);
-        Roles::create(['name' => 'Ophtalmologue']);
-        Roles::create(['name' => 'Kinésithérapeute']);
-        Roles::create(['name' => 'Psychologue']);
-        Roles::create(['name' => 'Dentiste']);
-        Roles::create(['name' => 'Pédiatre']);
+        Role::create(['name' => 'Patient']);
+        Role::create(['name' => 'Médecin généraliste']);
+        Role::create(['name' => 'Dermatologue']);
+        Role::create(['name' => 'Ophtalmologue']);
+        Role::create(['name' => 'Kinésithérapeute']);
+        Role::create(['name' => 'Psychologue']);
+        Role::create(['name' => 'Dentiste']);
+        Role::create(['name' => 'Pédiatre']);
     }
 }

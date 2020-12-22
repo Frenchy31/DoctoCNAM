@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $name
  * @property User[] $users
  */
-class Roles extends Model
+class Role extends Model
 {
     public $timestamps = false;
     /**
@@ -29,6 +29,6 @@ class Roles extends Model
      */
     public function users()
     {
-        return $this->hasMany('App\Models\User');
+        return $this->hasMany(User::class, 'role_id');
     }
 }

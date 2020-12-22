@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\Meetings;
+use App\Models\Meeting;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -13,7 +13,7 @@ class MeetingsFactory extends Factory
      *
      * @var string
      */
-    protected $model = Meetings::class;
+    protected $model = Meeting::class;
 
     /**
      * Define the model's default state.
@@ -31,9 +31,9 @@ class MeetingsFactory extends Factory
 
     public function configure()
     {
-        return $this->afterMaking(function (Meetings $meeting){
+        return $this->afterMaking(function (Meeting $meeting){
              //...
-        })->afterCreating(function (Meetings $meeting){
+        })->afterCreating(function (Meeting $meeting){
              $meeting->users()->attach(User::where('role_id', 1)->get()->random()->id);
              $meeting->users()->attach(User::where('role_id', rand(2,8))->get()->random()->id);
              $meeting->save();
