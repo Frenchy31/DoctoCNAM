@@ -3,8 +3,10 @@
 namespace Database\Factories;
 
 use App\Models\Adresses;
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 class UserFactory extends Factory
@@ -28,7 +30,7 @@ class UserFactory extends Factory
             'email' => $this->faker->unique()->safeEmail,
             'email_verified_at' => now(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-            'role_id' => $this->faker->numberBetween(9,16),
+            'role_id' => $this->faker->numberBetween(Role::first()->id, DB::table('roles')->orderBy('id','desc')->first()->id),
             'address_id' => $this->faker->numberBetween(Adresses::first()->id,Adresses::first()->id+AdressesFactory::$nbRowsToCreate),
             'remember_token' => Str::random(10),
             'phone_number' => $this->faker->phoneNumber
