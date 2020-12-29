@@ -35,7 +35,7 @@ class Adresses extends Model
      */
     public function meetings()
     {
-        return $this->hasMany('App\Meeting', 'address_id');
+        return $this->hasMany('App\Models\Meeting', 'address_id');
     }
 
     /**
@@ -43,7 +43,7 @@ class Adresses extends Model
      */
     public function users()
     {
-        return $this->belongsToMany('App\Models\User', 'address_id');
+        return $this->hasMany('App\Models\User', 'address_id');
     }
 
 }
