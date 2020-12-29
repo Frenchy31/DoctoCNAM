@@ -8,7 +8,6 @@ use Livewire\Component;
 class MeetingsList extends Component
 {
     public $meetings;
-
     /**
      * MeetingsList constructor.
      */

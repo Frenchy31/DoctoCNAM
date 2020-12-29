@@ -15,6 +15,12 @@ class MeetingCard extends Component
         $this->users = $this->meeting->users;
     }
 
+    public function deleteMeeting(){
+        foreach ($this->users as $user)
+            $this->meeting->users()->detach($user->id);
+        $this->meeting->delete();
+    }
+
     public function render()
     {
         return view('livewire.meeting-card');

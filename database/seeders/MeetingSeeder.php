@@ -3,10 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Meeting;
-use App\Models\User;
-use Database\Factories\MeetingsFactory;
-use Faker\Factory;
-use Faker\Provider\Address;
 use Illuminate\Database\Seeder;
 
 class MeetingSeeder extends Seeder

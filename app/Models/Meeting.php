@@ -35,7 +35,7 @@ class Meeting extends Model
      */
     public function adresse()
     {
-        return $this->belongsTo('App\Models\Adresses', 'address_id');
+        return $this->belongsTo(Adresses::class,'address_id');
     }
 
     /**

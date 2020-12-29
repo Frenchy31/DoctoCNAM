@@ -20,9 +20,9 @@ services:
       context: ./docker/node
       dockerfile: Dockerfile
       args:
-        uid: "${WWWUSER}"
+        userid: 1000
     image: vessel/node
-    user: node
+    user: "node"
     volumes:
      - .:/var/www/html
     networks:

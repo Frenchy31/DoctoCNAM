@@ -2,11 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Adresses;
-use App\Models\User;
-use App\Models\Meeting;
 use Illuminate\Database\Seeder;
-use function PHPUnit\Framework\never;
 
 class DatabaseSeeder extends Seeder
 {
