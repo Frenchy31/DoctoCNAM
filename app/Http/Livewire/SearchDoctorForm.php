@@ -2,13 +2,16 @@
 
 namespace App\Http\Livewire;
 
+use App\Mail\MeetingResume;
 use App\Models\Meeting;
 use App\Models\Role;
 use App\Models\User;
 use Carbon\Carbon;
 use DateTime;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
+use Mpdf\Mpdf;
 
 class SearchDoctorForm extends Component
 {
@@ -93,7 +96,24 @@ class SearchDoctorForm extends Component
         $meeting->users()->attach($this->doctor->id);
         $meeting->save();
         $this->meetingHour = 'default';
+        $this->emitTo('meetings-list','addMeeting', $meeting);
         $this->updated();
+        $mpdf = new Mpdf(
+            ['tempDir' => __DIR__ . '/../../../storage/app/temp/pdfs']
+        );
+        $date = $meeting->datetime->format('d-m-Y H');
+        $doctor = $this->doctor->name;
+        $adresse = $this->doctor->adresse->street . PHP_EOL . $this->doctor->adresse->postal_code . ' - ' . $this->doctor->adresse->city;
+        $mpdf->WriteHTML("<h1>Récapitulatif du rendez-vous.</h1>
+            <p>Date et heure du rendez-vous : $date h </p>
+            <p>Médecin : $doctor </p>
+            <p>Symptome : $this->symptome</p>
+            <p>Lieu : $adresse </p>
+        ");
+        $mpdf->Output('Recap-RDV-' . $meeting->id . '.pdf', \Mpdf\Output\Destination::FILE);
+        rename(__DIR__ . '/../../../public/'. 'Recap-RDV-' . $meeting->id . '.pdf',storage_path('app/temp/pdfs/'). 'Recap-RDV-' . $meeting->id . '.pdf' );
+        Mail::to(Auth::user())->send(new MeetingResume($meeting->id));
+        unlink(storage_path('app/temp/pdfs/'). 'Recap-RDV-' . $meeting->id . '.pdf');
     }
 
     public function render(){

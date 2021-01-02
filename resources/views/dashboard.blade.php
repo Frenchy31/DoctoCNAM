@@ -4,13 +4,7 @@
             {{ __('Rendez-vous') }}
         </h2>
     </x-slot>
-
-    <div class="py-12 grid grid-cols-6 gap-4">
-        <div class="col-span-5 sm:px-6 lg:px-8">
-            <livewire:meetings-list/>
-        </div>
-        <div class="col-span-1 sm:px-6 lg:px-8">
-            <livewire:search-doctor-form/>
-        </div>
-    </div>
+    @if(App\Models\Role::where('id', \Illuminate\Support\Facades\Auth::user()->role_id)->first()->name === 'Patient')
+        <livewire:patient-dashboard/>
+    @endif
 </x-app-layout>

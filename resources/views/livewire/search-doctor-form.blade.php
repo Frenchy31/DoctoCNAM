@@ -42,12 +42,11 @@
             @endif
         </select>
         @error('meetingHour') <span class="error text-danger">{{ $message }}</span> @enderror
-        {{$meetingHour}}
         <label class="block text-gray-600 text-sm font-semibold mb-2" for="symptome">
             Symptômes
         </label>
-        <textarea wire:model="symptome" name="symptome" id="symptome" class="bg-gray-100 p-1 m-1 appearance-none border rounded w-full text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Saisissez vos symptômes : fièvre, maux de ventre ... "></textarea>
+        <textarea wire:model.deferred="symptome" name="symptome" id="symptome" class="bg-gray-100 p-1 m-1 appearance-none border rounded w-full text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Saisissez vos symptômes : fièvre, maux de ventre ... "></textarea>
         @error('symptome') <span class="error text-danger">{{ $message }}</span> @enderror
-        <button wire:click="addMeeting()" class="btn btn-green">Valider RDV</button>
+        <button wire:click="addMeeting" class="btn btn-green">Valider RDV</button>
     </div>
 </div>

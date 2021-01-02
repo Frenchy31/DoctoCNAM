@@ -10,8 +10,9 @@ class MeetingCard extends Component
     public Meeting $meeting;
     public $users;
 
-    public function mount()
+    public function mount(Meeting $meeting)
     {
+        $this->meeting = $meeting;
         $this->users = $this->meeting->users;
     }
 
@@ -19,6 +20,7 @@ class MeetingCard extends Component
         foreach ($this->users as $user)
             $this->meeting->users()->detach($user->id);
         $this->meeting->delete();
+        $this->emit('deleteMeeting');
     }
 
     public function render()
