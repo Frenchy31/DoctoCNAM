@@ -11,6 +11,9 @@
 .btn-green {
     @apply text-white bg-green-500 hover:bg-green-700;
 }
+.btn-green:disabled {
+    @apply text-white bg-green-200;
+}
 .list-disc {
     list-style-type: disc;
 }
