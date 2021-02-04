@@ -6,7 +6,7 @@ services:
       dockerfile: Dockerfile
     image: vessel/app
     ports:
-     - "8080:80"
+     - "80:80"
     environment:
       CONTAINER_ENV: "${APP_ENV}"
       XDEBUG_HOST: "${XDEBUG_HOST}"
