@@ -12,6 +12,8 @@ Avant de lancer le script d'initialisation vous aurez besoin :
 - Une installation de docker et docker-compose  
 - PHP 7.4 (avec les libs php7.4-xml et php7.4-gd pour la génération de PDF)
   `sudo apt install php7.4 php7.4-xml php7.4-gd`
+- Composer
+  `sudo apt install composer`
 - D'un compte SMTP configuré par défaut avec le SMTP Gmail (MAIL_HOST dans le .env)
 - Votre compte utilisateur doit appartenir au groupe docker
 ##Création de l'environnement de développement en une commande 
