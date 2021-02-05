@@ -1,5 +1,4 @@
 #!/bin/bash
-composer install
 cp .env.example .env
 
 echo "Configuration du serveur SMTP (Serveur par défaut : smtp.googlemail.com. Mettre à jour le fichier .env pour le modifier.)"
@@ -28,6 +27,7 @@ sleep 2
 echo "Démarrage des conteneurs Docker, peut prendre quelques minutes..."
 ./vessel start
 wait $!
+./vessel composer update
 echo "Droits d'accès de l'application à la base de données."
 ./vessel exec mysql mysql -uroot -psecret -e "CREATE SCHEMA DOCTOCNAM;GRANT ALL PRIVILEGES ON DOCTOCNAM.* TO 'db_user'@'%' IDENTIFIED BY 'secret';"
 echo "Génération de la clé de chiffrement de l'application."
