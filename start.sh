@@ -18,16 +18,16 @@ sed -i "s/MAIL_USERNAME=/MAIL_USERNAME=$SMTP_USERNAME/" .env
 sed -i "s/MAIL_PASSWORD=/MAIL_PASSWORD=$SMTP_PASSWORD/" .env
 echo "Ajoutées."
 
+echo "Démarrage des conteneurs Docker, peut prendre quelques minutes..."
+docker-compose up
+wait $!
+docker exec -it doctocnam_app composer update
+
 echo "Initialisation de Laravel Vessel (Configuration Docker)"
 php artisan vendor:publish --provider="Vessel\VesselServiceProvider"
 sleep 2
 bash vessel init
 sleep 2
-
-echo "Démarrage des conteneurs Docker, peut prendre quelques minutes..."
-./vessel start
-wait $!
-./vessel composer update
 echo "Droits d'accès de l'application à la base de données."
 ./vessel exec mysql mysql -uroot -psecret -e "CREATE SCHEMA DOCTOCNAM;GRANT ALL PRIVILEGES ON DOCTOCNAM.* TO 'db_user'@'%' IDENTIFIED BY 'secret';"
 echo "Génération de la clé de chiffrement de l'application."
