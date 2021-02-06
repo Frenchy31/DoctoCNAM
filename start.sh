@@ -21,7 +21,7 @@ echo "Ajoutées."
 echo "Démarrage des conteneurs Docker, peut prendre quelques minutes..."
 docker-compose up
 wait $!
-docker exec -it doctocnam_app composer update
+docker exec -it doctocnam_app_1 composer update
 
 echo "Initialisation de Laravel Vessel (Configuration Docker)"
 php artisan vendor:publish --provider="Vessel\VesselServiceProvider"
