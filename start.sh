@@ -25,6 +25,8 @@ docker exec -it doctocnam_app_1 composer update
 
 echo "Initialisation de Laravel Vessel (Configuration Docker)"
 docker exec -it doctocnam_app_1 php artisan vendor:publish --provider="Vessel\VesselServiceProvider"
+echo "Création du fichier de log et ajout des droits d'écriture"
+docker exec -it doctocnam_app_1 touch storage/logs/laravel.log
 sleep 2
 bash vessel init
 sleep 2
