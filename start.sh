@@ -24,7 +24,7 @@ wait $!
 docker exec -it doctocnam_app_1 composer update
 
 echo "Initialisation de Laravel Vessel (Configuration Docker)"
-php artisan vendor:publish --provider="Vessel\VesselServiceProvider"
+docker exec -it doctocnam_app_1 php artisan vendor:publish --provider="Vessel\VesselServiceProvider"
 sleep 2
 bash vessel init
 sleep 2
