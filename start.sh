@@ -27,6 +27,8 @@ echo "Création du fichier de log et ajout des droits d'écriture"
 docker exec -it doctocnam_app_1 touch storage/logs/laravel.log
 sudo chown $USER:docker storage/logs/laravel.log
 sudo chmod 666 storage/logs/laravel.log
+echo "Ajout des droits d'accès nécessaires sur les fichiers de cache"
+sudo chmod -R 666 storage/*
 
 echo "Initialisation de Laravel Vessel (Configuration Docker)"
 docker exec -it doctocnam_app_1 php artisan vendor:publish --provider="Vessel\VesselServiceProvider"
@@ -48,6 +50,6 @@ echo "Build et minification des sources .css et .js"
 ./vessel npm run dev
 wait $!
 echo "Vous pouvez ouvrir votre navigateur à l'adresse http://localhost:8080"
-echo "Compte de test"
+
 
 #TODO Ajout création de compte de test
