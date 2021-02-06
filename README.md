@@ -16,8 +16,14 @@ Avant de lancer le script d'initialisation vous aurez besoin :
   `sudo apt install composer`
 - D'un compte SMTP configuré par défaut avec le SMTP Gmail (MAIL_HOST dans le .env)
 - Votre compte utilisateur doit appartenir au groupe docker
-##Création de l'environnement de développement en une commande 
-Une fois que le projet a été récupéré
+
+##Extraction du projet depuis une archive
+- `./vessel start`
+- `./vessel artisan migrate:fresh --seed`
+Ces commandes ont pour effet de démarrer les conteneurs docker et d'initialiser une base de données.
+
+##Création de l'environnement de production en une commande (Script utilisé sur AWS)
+Une fois que le projet a été récupéré depuis Git pour un déploiement complet :
 
 `chmod +x start.sh`
 
