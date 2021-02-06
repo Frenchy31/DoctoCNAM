@@ -19,20 +19,27 @@ sed -i "s/MAIL_PASSWORD=/MAIL_PASSWORD=$SMTP_PASSWORD/" .env
 echo "Ajoutées."
 
 echo "Démarrage des conteneurs Docker, peut prendre quelques minutes..."
-docker-compose up
+docker-compose up -d
 wait $!
 docker exec -it doctocnam_app_1 composer update
 
-echo "Initialisation de Laravel Vessel (Configuration Docker)"
-docker exec -it doctocnam_app_1 php artisan vendor:publish --provider="Vessel\VesselServiceProvider"
 echo "Création du fichier de log et ajout des droits d'écriture"
 docker exec -it doctocnam_app_1 touch storage/logs/laravel.log
+sudo chgrp docker storage/logs/laravel.log
+sudo chmod g+w storage/logs/laravel.log
+
+echo "Initialisation de Laravel Vessel (Configuration Docker)"
+docker exec -it doctocnam_app_1 php artisan vendor:publish --provider="Vessel\VesselServiceProvider"
 sleep 2
 bash vessel init
 sleep 2
+echo "Ajout des droits d'exécution de vessel (besoin d'être sudoer)"
+sudo chmod +x vessel
 echo "Droits d'accès de l'application à la base de données."
 ./vessel exec mysql mysql -uroot -psecret -e "CREATE SCHEMA DOCTOCNAM;GRANT ALL PRIVILEGES ON DOCTOCNAM.* TO 'db_user'@'%' IDENTIFIED BY 'secret';"
 echo "Génération de la clé de chiffrement de l'application."
+docker exec -it doctocnam_app_1 php artisan key:generate
+sudo chgrp docker .env
 ./vessel artisan key:generate
 echo "Création et remplissage des tables."
 ./vessel artisan migrate:fresh --seed

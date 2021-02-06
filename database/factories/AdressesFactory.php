@@ -14,7 +14,7 @@ class AdressesFactory extends Factory
      */
     protected $model = Adresses::class;
 
-    public static int $nbRowsToCreate = 50000;
+    public static int $nbRowsToCreate = 3000;
     /**
      * Define the model's default state.
      *

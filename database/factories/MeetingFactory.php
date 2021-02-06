@@ -26,7 +26,7 @@ class MeetingFactory extends Factory
     public function definition()
     {
         return [
-            'address_id' => rand(Adresses::first()->id,Adresses::first()->id+AdressesFactory::$nbRowsToCreate),
+            'address_id' => rand(Adresses::first()->id,AdressesFactory::$nbRowsToCreate),
             'datetime' => $this->generateValidDate(),
             'symptome' => $this->faker->text(300)
         ];

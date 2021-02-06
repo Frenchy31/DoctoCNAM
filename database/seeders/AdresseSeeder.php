@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Adresses;
+use Database\Factories\AdressesFactory;
 use Illuminate\Database\Seeder;
 
 class AdresseSeeder extends Seeder
@@ -15,7 +16,7 @@ class AdresseSeeder extends Seeder
     public function run()
     {
         Adresses::factory()
-            ->times(50000)
+            ->times(AdressesFactory::$nbRowsToCreate)
             ->create();
     }
 }
