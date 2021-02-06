@@ -19,7 +19,7 @@ sed -i "s/MAIL_PASSWORD=/MAIL_PASSWORD=$SMTP_PASSWORD/" .env
 echo "Ajoutées."
 
 echo "Démarrage des conteneurs Docker, peut prendre quelques minutes..."
-docker-compose up
+docker-compose up -d
 wait $!
 docker exec -it doctocnam_app_1 composer update
 
